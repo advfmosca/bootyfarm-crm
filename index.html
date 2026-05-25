@@ -671,6 +671,482 @@
     letter-spacing: 0.08em;
   }
 
+  /* ===== CUSTOMER SEARCH ===== */
+  .search-wrap {
+    position: relative;
+  }
+  .search-input {
+    width: 100%;
+    padding: 16px 50px 16px 20px;
+    border: 2px solid var(--ink);
+    background: var(--card);
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+    border-radius: 0;
+    letter-spacing: 0.02em;
+    transition: background 0.15s;
+  }
+  .search-input::placeholder {
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .search-input:focus {
+    outline: none;
+    background: var(--gray-50);
+    box-shadow: inset 0 0 0 1px var(--ink);
+  }
+  .search-icon {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--ink);
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .search-clear {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--ink);
+    color: var(--card);
+    border: none;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 1;
+    font-family: var(--font-body);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+  .search-clear.show { display: flex; }
+  .search-results {
+    margin-top: 12px;
+    border: 1px solid var(--ink);
+    max-height: 380px;
+    overflow-y: auto;
+    display: none;
+  }
+  .search-results.show { display: block; }
+  .search-result-row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+    cursor: pointer;
+    background: var(--card);
+    transition: background 0.12s;
+  }
+  .search-result-row:last-child { border-bottom: none; }
+  .search-result-row:hover { background: var(--gray-100); }
+  .search-result-row .sr-avatar {
+    width: 38px; height: 38px;
+    background: var(--ink);
+    color: var(--card);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-size: 16px;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  .search-result-row .sr-name {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .search-result-row .sr-contacts {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .search-result-row .sr-stats {
+    text-align: right;
+    white-space: nowrap;
+  }
+  .search-result-row .sr-stats .ltv {
+    font-family: var(--font-display);
+    font-size: 18px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .search-result-row .sr-stats .count {
+    font-family: var(--font-body);
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+  }
+  .search-result-row mark {
+    background: var(--ink);
+    color: var(--card);
+    padding: 0 2px;
+  }
+  .search-empty {
+    padding: 26px 16px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+  }
+  .search-meta {
+    font-family: var(--font-body);
+    font-size: 10.5px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    margin-top: 8px;
+  }
+
+  @media (max-width: 700px) {
+    .search-result-row { grid-template-columns: auto 1fr; }
+    .search-result-row .sr-stats { grid-column: span 2; text-align: left; border-top: 1px solid var(--line); padding-top: 6px; }
+  }
+
+  /* ===== RENEWALS LIST ===== */
+  .renewals-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .renewal-row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 14px;
+    border: 1px solid var(--ink);
+    cursor: pointer;
+    background: var(--card);
+    transition: background 0.15s;
+  }
+  .renewal-row:hover { background: var(--gray-100); }
+  .renewal-row.expired {
+    background: var(--red-soft);
+    border-color: var(--red);
+  }
+  .renewal-row.expired:hover { background: #f0d4d4; }
+  .renewal-row.urgent {
+    background: var(--yellow-soft);
+    border-color: var(--yellow);
+  }
+  .renewal-row.urgent:hover { background: #efe6b0; }
+  .renewal-days-block {
+    text-align: center;
+    min-width: 64px;
+  }
+  .renewal-days-block .num {
+    font-family: var(--font-display);
+    font-size: 30px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .renewal-row.expired .renewal-days-block .num { color: var(--red); }
+  .renewal-row.urgent .renewal-days-block .num { color: var(--yellow); }
+  .renewal-days-block .lbl {
+    font-family: var(--font-body);
+    font-size: 9px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+  .renewal-info {
+    min-width: 0;
+  }
+  .renewal-info .r-name {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .renewal-info .r-meta {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    margin-top: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .renewal-info .r-product {
+    font-size: 12px;
+    color: var(--ink);
+    font-weight: 600;
+    margin-top: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .renewal-actions {
+    text-align: right;
+  }
+  .renewal-actions .r-importo {
+    font-family: var(--font-display);
+    font-size: 18px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+  .renewal-actions .r-cta {
+    font-size: 9.5px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-weight: 700;
+    margin-top: 4px;
+  }
+  .renewals-empty {
+    padding: 28px 12px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+  }
+
+  @media (max-width: 900px) {
+    .renewals-grid { grid-template-columns: 1fr; }
+    .renewal-row { grid-template-columns: auto 1fr; }
+    .renewal-actions { grid-column: span 2; text-align: left; border-top: 1px solid var(--line); padding-top: 8px; margin-top: 4px; }
+  }
+
+  /* ===== CUSTOMER MODAL ===== */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(29, 29, 27, 0.7);
+    z-index: 8000;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 20px;
+    overflow-y: auto;
+  }
+  .modal-backdrop.show {
+    display: flex;
+    animation: fadeIn 0.18s ease;
+  }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .modal-card {
+    background: var(--card);
+    border: 2px solid var(--ink);
+    width: 100%;
+    max-width: 820px;
+    padding: 0;
+    animation: slideIn 0.22s ease;
+  }
+  @keyframes slideIn {
+    from { transform: translateY(-12px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  .modal-header {
+    background: var(--ink);
+    color: var(--card);
+    padding: 24px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .modal-header .customer-id {
+    display: flex; align-items: center; gap: 14px;
+  }
+  .modal-header .customer-avatar {
+    width: 52px; height: 52px;
+    background: var(--card);
+    color: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-size: 22px;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  .modal-header .customer-name {
+    font-family: var(--font-display);
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--card);
+  }
+  .modal-header .customer-contacts {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--gray-300);
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+  }
+  .modal-header .customer-contacts a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted var(--gray-300);
+  }
+  .modal-close {
+    background: transparent;
+    border: 1px solid var(--card);
+    color: var(--card);
+    width: 36px; height: 36px;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    font-family: var(--font-body);
+    transition: all 0.15s;
+    border-radius: 0;
+    padding: 0;
+  }
+  .modal-close:hover {
+    background: var(--card);
+    color: var(--ink);
+  }
+
+  .modal-body { padding: 24px 28px; }
+
+  .modal-kpis {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .modal-kpi {
+    border: 1px solid var(--ink);
+    padding: 12px 14px;
+  }
+  .modal-kpi .lbl {
+    font-family: var(--font-body);
+    font-size: 9.5px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .modal-kpi .val {
+    font-family: var(--font-display);
+    font-size: 22px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .modal-kpi .val.small {
+    font-size: 17px;
+  }
+
+  .modal-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+  .modal-meta-block {
+    border: 1px solid var(--ink);
+    padding: 14px 16px;
+  }
+  .modal-meta-block h5 {
+    font-family: var(--font-display);
+    font-size: 14px;
+    margin: 0 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    color: var(--ink);
+  }
+  .modal-meta-block .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12.5px;
+    margin-bottom: 8px;
+  }
+  .modal-meta-block .bar-row:last-child { margin-bottom: 0; }
+  .modal-meta-block .bar-row .bar-label {
+    min-width: 60px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 11px;
+  }
+  .modal-meta-block .bar-row .bar-bg {
+    flex: 1;
+    height: 8px;
+    background: var(--gray-200);
+    overflow: hidden;
+  }
+  .modal-meta-block .bar-row .bar-fill {
+    height: 100%;
+    background: var(--ink);
+    transition: width 0.3s ease;
+  }
+  .modal-meta-block .bar-row .bar-value {
+    min-width: 80px;
+    text-align: right;
+    font-family: var(--font-display);
+    font-size: 14px;
+    letter-spacing: -0.01em;
+  }
+
+  .modal-history-title {
+    font-family: var(--font-display);
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    margin: 0 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--ink);
+    color: var(--ink);
+  }
+  .modal-history-table { font-size: 12.5px; }
+  .modal-history-table thead th {
+    background: var(--gray-100);
+    color: var(--ink);
+    padding: 9px 10px;
+    font-size: 10px;
+  }
+
+  .name-clickable {
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: var(--gray-300);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.15s;
+  }
+  .name-clickable:hover {
+    text-decoration-color: var(--ink);
+  }
+
   /* ===== TOAST ===== */
   .toast {
     position: fixed;
@@ -816,6 +1292,11 @@
   .hidden { display: none !important; }
 
   /* ===== Responsive ===== */
+  @media (max-width: 900px) {
+    .modal-kpis { grid-template-columns: repeat(2, 1fr); }
+    .modal-meta { grid-template-columns: 1fr; }
+  }
+
   @media (max-width: 1000px) {
     .kpi-grid { grid-template-columns: repeat(2, 1fr); }
     .stats-grid { grid-template-columns: 1fr; }
@@ -904,6 +1385,39 @@
         <div class="value" id="kpiClients">0</div>
         <div class="hint">Persone diverse</div>
       </div>
+    </div>
+
+    <!-- CERCA CLIENTE -->
+    <div class="card">
+      <div class="card-header">
+        <h3>Cerca cliente</h3>
+        <span class="search-meta" id="searchMeta">Digita 2+ caratteri · scorciatoia ⌘K</span>
+      </div>
+      <div class="search-wrap">
+        <input type="text" class="search-input" id="customerSearch"
+               placeholder="Nome · Cognome · Email · Cellulare"
+               autocomplete="off"
+               oninput="onCustomerSearch()">
+        <span class="search-icon" id="searchIconEl">⌕</span>
+        <button class="search-clear" id="searchClearBtn" onclick="clearCustomerSearch()">✕</button>
+      </div>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+
+    <!-- RINNOVI -->
+    <div class="card" id="renewalsCard" style="border-color:var(--ink);">
+      <div class="card-header">
+        <h3>🔔 Rinnovi da chiudere <span id="renewalsBadge" style="font-family:var(--font-body);font-weight:700;font-size:11px;letter-spacing:0.12em;background:var(--ink);color:var(--card);padding:3px 9px;margin-left:8px;text-transform:uppercase;">0</span></h3>
+        <div class="toolbar">
+          <label>Finestra:</label>
+          <select id="renewalsWindow" onchange="renderRenewals()">
+            <option value="30">Prossimi 30 giorni + scaduti 7gg</option>
+            <option value="14">Prossimi 14 giorni + scaduti 7gg</option>
+            <option value="60">Prossimi 60 giorni + scaduti 7gg</option>
+          </select>
+        </div>
+      </div>
+      <div id="renewalsList"></div>
     </div>
 
     <h2 class="section-title">
@@ -1002,7 +1516,15 @@
               + Salva vendita
             </button>
           </div>
-          <div class="field col-12">
+          <div class="field col-3">
+            <label>Inizio abbonamento</label>
+            <input type="date" id="f_inizio">
+          </div>
+          <div class="field col-3">
+            <label>Fine abbonamento <span id="suggestedTag" class="field-customer-info"></span></label>
+            <input type="date" id="f_fine">
+          </div>
+          <div class="field col-6">
             <label>Note (opzionale)</label>
             <input type="text" id="f_note" placeholder="Sede, condizioni speciali, riferimento campagna...">
           </div>
@@ -1148,6 +1670,67 @@
       </div>
     </details>
 
+  </div>
+
+  <!-- CUSTOMER MODAL -->
+  <div id="customerModal" class="modal-backdrop" onclick="onBackdropClick(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div class="customer-id">
+          <div class="customer-avatar" id="cm_avatar">?</div>
+          <div>
+            <div class="customer-name" id="cm_name">—</div>
+            <div class="customer-contacts" id="cm_contacts">—</div>
+          </div>
+        </div>
+        <button class="modal-close" onclick="closeCustomerModal()" title="Chiudi (Esc)">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-kpis">
+          <div class="modal-kpi">
+            <div class="lbl">LTV Totale</div>
+            <div class="val" id="cm_ltv">€ 0,00</div>
+          </div>
+          <div class="modal-kpi">
+            <div class="lbl"># Acquisti</div>
+            <div class="val" id="cm_count">0</div>
+          </div>
+          <div class="modal-kpi">
+            <div class="lbl">Ticket Medio</div>
+            <div class="val" id="cm_avg">€ 0,00</div>
+          </div>
+          <div class="modal-kpi">
+            <div class="lbl">Ultimo Acquisto</div>
+            <div class="val small" id="cm_last">—</div>
+          </div>
+        </div>
+
+        <div class="modal-meta">
+          <div class="modal-meta-block">
+            <h5>Origine</h5>
+            <div id="cm_origin"></div>
+          </div>
+          <div class="modal-meta-block">
+            <h5>Pagamenti preferiti</h5>
+            <div id="cm_payments"></div>
+          </div>
+        </div>
+
+        <h4 class="modal-history-title">Storico vendite</h4>
+        <table class="modal-history-table">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Origine</th>
+              <th>Tipologia</th>
+              <th>Importo</th>
+              <th>Pagamento</th>
+            </tr>
+          </thead>
+          <tbody id="cm_history"></tbody>
+        </table>
+      </div>
+    </div>
   </div>
 
   <div id="toast" class="toast"></div>
@@ -1324,6 +1907,9 @@ async function onSubmitSale(e) {
   btn.disabled = true;
   btn.textContent = 'Salvo…';
 
+  const dataInizio = document.getElementById('f_inizio').value || null;
+  const dataFine = document.getElementById('f_fine').value || null;
+
   const sale = {
     data, nome, cognome,
     email: email || null,
@@ -1331,7 +1917,9 @@ async function onSubmitSale(e) {
     tipologia, importo,
     pagamento: pagamento || null,
     note: note || null,
-    origine
+    origine,
+    data_inizio_abbonamento: dataInizio,
+    data_fine_abbonamento: dataFine
   };
 
   const { data: inserted, error } = await db.from('vendite').insert(sale).select().single();
@@ -1350,7 +1938,10 @@ async function onSubmitSale(e) {
   document.getElementById('f_importo').value = '';
   document.getElementById('f_pagamento').value = '';
   document.getElementById('f_note').value = '';
+  document.getElementById('f_inizio').value = '';
+  document.getElementById('f_fine').value = '';
   document.getElementById('customerTag').textContent = '';
+  document.getElementById('suggestedTag').textContent = '';
   selectOrigine('ADV');
   document.getElementById('f_nome').focus();
 
@@ -1511,6 +2102,7 @@ function renderAll() {
   renderBreakdownList('topProdotti', aggregateByField(arr, 'tipologia'));
   renderBreakdownList('topPagamenti', aggregateByField(arr, 'pagamento'));
 
+  renderRenewals();
   renderSalesTable();
   renderAdsKPIs();
   renderAdsTable();
@@ -1568,7 +2160,7 @@ function renderSalesTable() {
       <tr>
         <td style="white-space:nowrap;text-transform:uppercase;font-size:11.5px;letter-spacing:0.04em;font-weight:600;">${fmtDate(s.data)}</td>
         <td><span class="pill ${origCls}">${escapeHTML(s.origine || '—')}</span></td>
-        <td><strong style="font-weight:700;">${escapeHTML(s.nome)} ${escapeHTML(s.cognome)}</strong></td>
+        <td><strong class="name-clickable" style="font-weight:700;" onclick="openCustomerModal('${s.id}')" title="Apri scheda cliente">${escapeHTML(s.nome)} ${escapeHTML(s.cognome)}</strong></td>
         <td style="font-size:11.5px;color:var(--muted);">${s.email ? escapeHTML(s.email) + '<br>' : ''}${s.cellulare ? escapeHTML(s.cellulare) : ''}</td>
         <td style="font-weight:500;">${escapeHTML(s.tipologia)}${s.note ? `<div style="font-size:11px;color:var(--muted);font-weight:400;margin-top:2px;">${escapeHTML(s.note)}</div>` : ''}</td>
         <td style="font-family:var(--font-display);font-size:18px;letter-spacing:-0.01em;white-space:nowrap;">${fmtEUR(s.importo)}</td>
@@ -1782,6 +2374,429 @@ function exportSalesCSV() {
   URL.revokeObjectURL(url);
 }
 
+/* ===== CUSTOMER SEARCH ===== */
+function buildCustomerIndex() {
+  // Raggruppa vendite per customerKey, aggrega dati e statistiche
+  const map = {};
+  sales.forEach(s => {
+    const k = customerKey(s);
+    if (!map[k]) {
+      map[k] = {
+        key: k,
+        nome: s.nome || '',
+        cognome: s.cognome || '',
+        emails: new Set(),
+        cellulari: new Set(),
+        salesIds: [],
+        ltv: 0,
+        count: 0,
+        firstDate: s.data,
+        lastDate: s.data,
+        latestSaleId: s.id,
+        latestCreatedAt: s.created_at
+      };
+    }
+    const c = map[k];
+    if (s.email) c.emails.add(s.email);
+    if (s.cellulare) c.cellulari.add(s.cellulare);
+    c.salesIds.push(s.id);
+    c.ltv += Number(s.importo) || 0;
+    c.count += 1;
+    if (s.data < c.firstDate) c.firstDate = s.data;
+    if (s.data > c.lastDate) c.lastDate = s.data;
+    // tieni come "latest" la vendita più recente per created_at (usata per aprire modal)
+    if (!c.latestCreatedAt || (s.created_at && s.created_at > c.latestCreatedAt)) {
+      c.latestCreatedAt = s.created_at;
+      c.latestSaleId = s.id;
+    }
+    // Usa nome/cognome più completi (in caso una vendita abbia campo vuoto)
+    if (!c.nome && s.nome) c.nome = s.nome;
+    if (!c.cognome && s.cognome) c.cognome = s.cognome;
+  });
+  return Object.values(map);
+}
+
+function highlightMatch(text, query) {
+  if (!text) return '';
+  const safe = escapeHTML(text);
+  if (!query) return safe;
+  const q = escapeHTML(query);
+  const re = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
+  return safe.replace(re, '<mark>$1</mark>');
+}
+
+function onCustomerSearch() {
+  const query = document.getElementById('customerSearch').value.trim();
+  const resEl = document.getElementById('searchResults');
+  const metaEl = document.getElementById('searchMeta');
+  const clearBtn = document.getElementById('searchClearBtn');
+  const iconEl = document.getElementById('searchIconEl');
+
+  clearBtn.classList.toggle('show', query.length > 0);
+  iconEl.style.display = query.length > 0 ? 'none' : 'block';
+
+  if (query.length < 2) {
+    resEl.classList.remove('show');
+    resEl.innerHTML = '';
+    metaEl.textContent = 'Digita 2+ caratteri per cercare';
+    return;
+  }
+
+  const q = query.toLowerCase();
+  const customers = buildCustomerIndex();
+
+  const matches = customers.filter(c => {
+    const blob = [
+      c.nome, c.cognome,
+      ...Array.from(c.emails),
+      ...Array.from(c.cellulari)
+    ].join(' ').toLowerCase();
+    return blob.includes(q);
+  }).sort((a,b) => b.ltv - a.ltv).slice(0, 20);
+
+  metaEl.textContent = matches.length === 0
+    ? `Nessun risultato per "${query}"`
+    : `${matches.length} ${matches.length === 1 ? 'cliente trovato' : 'clienti trovati'} (ordinati per LTV)`;
+
+  if (matches.length === 0) {
+    resEl.innerHTML = `<div class="search-empty">Nessun cliente corrisponde · prova un altro termine</div>`;
+    resEl.classList.add('show');
+    return;
+  }
+
+  resEl.innerHTML = matches.map(c => {
+    const initials = ((c.nome[0]||'?') + (c.cognome[0]||'')).toUpperCase();
+    const emailStr = Array.from(c.emails)[0] || '';
+    const cellStr = Array.from(c.cellulari)[0] || '';
+    const contactBits = [];
+    if (cellStr) contactBits.push(highlightMatch(cellStr, query));
+    if (emailStr) contactBits.push(highlightMatch(emailStr, query));
+    const contacts = contactBits.length ? contactBits.join(' · ') : '<span style="opacity:0.5;">nessun contatto</span>';
+    const nameLine = highlightMatch(`${c.nome} ${c.cognome}`.trim(), query);
+
+    return `
+      <div class="search-result-row" onclick="openCustomerModal('${c.latestSaleId}')">
+        <div class="sr-avatar">${initials}</div>
+        <div style="min-width:0;">
+          <div class="sr-name">${nameLine || '—'}</div>
+          <div class="sr-contacts">${contacts}</div>
+        </div>
+        <div class="sr-stats">
+          <div class="ltv">${fmtEUR(c.ltv)}</div>
+          <div class="count">${c.count} ${c.count === 1 ? 'acquisto' : 'acquisti'}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+  resEl.classList.add('show');
+}
+
+function clearCustomerSearch() {
+  const inp = document.getElementById('customerSearch');
+  inp.value = '';
+  inp.focus();
+  onCustomerSearch();
+}
+
+/* ===== ABBONAMENTI / RENEWALS ===== */
+function addMonthsISO(isoDate, months) {
+  if (!isoDate) return null;
+  const d = new Date(isoDate + 'T12:00:00');
+  d.setMonth(d.getMonth() + months);
+  return d.toISOString().slice(0,10);
+}
+
+function addDaysISO(isoDate, days) {
+  if (!isoDate) return null;
+  const d = new Date(isoDate + 'T12:00:00');
+  d.setDate(d.getDate() + days);
+  return d.toISOString().slice(0,10);
+}
+
+function suggestDurationMonths(tipologia) {
+  const t = (tipologia || '').toLowerCase();
+  if (/annuale|12\s*mes|12\s*month/.test(t)) return 12;
+  if (/6\s*mes|sei\s*mes/.test(t))           return 6;
+  if (/3\s*mes|trimestral/.test(t))          return 3;
+  if (/mensile|1\s*mes/.test(t))             return 1;
+  return null;
+}
+
+function updateSuggestedFine() {
+  const tip = document.getElementById('f_tipologia').value.trim();
+  const inizio = document.getElementById('f_inizio').value || document.getElementById('f_data').value;
+  const finEl = document.getElementById('f_fine');
+  const inizioEl = document.getElementById('f_inizio');
+  const tag = document.getElementById('suggestedTag');
+
+  const months = suggestDurationMonths(tip);
+  if (months == null || !inizio) {
+    tag.textContent = '';
+    return;
+  }
+  const suggested = addMonthsISO(inizio, months);
+  // Suggerisci solo se l'utente non ha già messo qualcosa di diverso
+  if (!finEl.value || finEl.dataset.autoFilled === '1') {
+    finEl.value = suggested;
+    finEl.dataset.autoFilled = '1';
+    tag.textContent = `auto · ${months} ${months === 1 ? 'mese' : 'mesi'}`;
+  }
+  // Se data inizio è vuota la prefill con f_data
+  if (!inizioEl.value) {
+    inizioEl.value = document.getElementById('f_data').value;
+    inizioEl.dataset.autoFilled = '1';
+  }
+}
+
+function getRenewals(windowDays) {
+  const today = new Date().toISOString().slice(0,10);
+  const futureCutoff = addDaysISO(today, windowDays);
+  const pastCutoff = addDaysISO(today, -7); // scaduti negli ultimi 7gg
+
+  // Raggruppa per cliente: prendi la vendita con data_fine più recente
+  const byCustomer = {};
+  sales.filter(s => s.data_fine_abbonamento).forEach(s => {
+    const k = customerKey(s);
+    if (!byCustomer[k] || s.data_fine_abbonamento > byCustomer[k].data_fine_abbonamento) {
+      byCustomer[k] = s;
+    }
+  });
+
+  // Filtra nella finestra e ordina per scadenza crescente (più urgenti in alto)
+  return Object.values(byCustomer)
+    .filter(s => s.data_fine_abbonamento >= pastCutoff && s.data_fine_abbonamento <= futureCutoff)
+    .sort((a,b) => a.data_fine_abbonamento.localeCompare(b.data_fine_abbonamento));
+}
+
+function daysBetween(fromISO, toISO) {
+  const f = new Date(fromISO + 'T12:00:00');
+  const t = new Date(toISO + 'T12:00:00');
+  return Math.round((t - f) / (1000 * 60 * 60 * 24));
+}
+
+function renderRenewals() {
+  const win = parseInt(document.getElementById('renewalsWindow').value) || 30;
+  const list = getRenewals(win);
+  document.getElementById('renewalsBadge').textContent = list.length;
+
+  const today = new Date().toISOString().slice(0,10);
+  const container = document.getElementById('renewalsList');
+
+  if (list.length === 0) {
+    container.innerHTML = `<div class="renewals-empty">Nessun abbonamento in scadenza · Lavora rilassato 🌱</div>`;
+    return;
+  }
+
+  container.innerHTML = `<div class="renewals-grid">${list.map(s => {
+    const days = daysBetween(today, s.data_fine_abbonamento);
+    let cls = '';
+    let numLabel = '';
+    let cta = 'Apri scheda';
+    if (days < 0) {
+      cls = 'expired';
+      numLabel = 'GG SCADUTO';
+      cta = '⚠ Da recuperare';
+    } else if (days <= 7) {
+      cls = 'urgent';
+      numLabel = days === 1 ? 'GIORNO' : 'GIORNI';
+      cta = '🔥 Chiama oggi';
+    } else if (days <= 14) {
+      numLabel = 'GIORNI';
+      cta = 'Push commerciale';
+    } else {
+      numLabel = 'GIORNI';
+      cta = 'Programma push';
+    }
+    const phone = s.cellulare ? `<a href="tel:${escapeHTML(s.cellulare)}" onclick="event.stopPropagation();" style="color:inherit;text-decoration:none;border-bottom:1px dotted currentColor;">${escapeHTML(s.cellulare)}</a>` : '';
+    const email = s.email ? `<a href="mailto:${escapeHTML(s.email)}" onclick="event.stopPropagation();" style="color:inherit;text-decoration:none;border-bottom:1px dotted currentColor;">${escapeHTML(s.email)}</a>` : '';
+    const meta = [phone, email].filter(Boolean).join(' · ') || '<span style="opacity:0.5;">nessun contatto</span>';
+
+    return `
+      <div class="renewal-row ${cls}" onclick="openCustomerModal('${s.id}')">
+        <div class="renewal-days-block">
+          <div class="num">${Math.abs(days)}</div>
+          <div class="lbl">${numLabel}</div>
+        </div>
+        <div class="renewal-info">
+          <div class="r-name">${escapeHTML(s.nome)} ${escapeHTML(s.cognome)}</div>
+          <div class="r-meta">${meta}</div>
+          <div class="r-product">${escapeHTML(s.tipologia)} · scadenza ${fmtDate(s.data_fine_abbonamento)}</div>
+        </div>
+        <div class="renewal-actions">
+          <div class="r-importo">${fmtEUR(s.importo)}</div>
+          <div class="r-cta">${cta}</div>
+        </div>
+      </div>
+    `;
+  }).join('')}</div>`;
+}
+
+/* ===== CUSTOMER MODAL ===== */
+function normalizePhone(p) {
+  if (!p) return '';
+  return String(p).replace(/[\s\-\(\)\.]/g, '').replace(/^\+?39/, '');
+}
+
+function customerKey(s) {
+  // Priorità cellulare normalizzato, fallback nome+cognome lowercase
+  const tel = normalizePhone(s.cellulare);
+  if (tel) return 'tel:' + tel;
+  return 'nm:' + ((s.nome || '') + ' ' + (s.cognome || '')).toLowerCase().trim();
+}
+
+function getCustomerSales(key) {
+  return sales.filter(s => customerKey(s) === key);
+}
+
+function openCustomerModal(saleId) {
+  const sale = sales.find(s => s.id === saleId);
+  if (!sale) return;
+  const key = customerKey(sale);
+  const history = getCustomerSales(key).slice().sort((a,b) => {
+    if (a.data !== b.data) return b.data.localeCompare(a.data);
+    return (b.created_at || '').localeCompare(a.created_at || '');
+  });
+
+  // Identità (prendi i dati più completi dall'ultima vendita)
+  const latest = history[0];
+  const nome = latest.nome || '';
+  const cognome = latest.cognome || '';
+  const email = history.map(s => s.email).filter(Boolean)[0] || '';
+  const cellulare = history.map(s => s.cellulare).filter(Boolean)[0] || '';
+
+  // KPI
+  const total = history.reduce((s,x) => s + (Number(x.importo)||0), 0);
+  const count = history.length;
+  const avg = count > 0 ? total / count : 0;
+  const lastDate = history[0].data;
+
+  // Origine breakdown
+  const advN = history.filter(s => s.origine === 'ADV').length;
+  const liaN = history.filter(s => s.origine === 'LIA').length;
+  const advTot = history.filter(s => s.origine === 'ADV').reduce((s,x) => s + (Number(x.importo)||0), 0);
+  const liaTot = history.filter(s => s.origine === 'LIA').reduce((s,x) => s + (Number(x.importo)||0), 0);
+
+  // Pagamenti
+  const payMap = {};
+  history.forEach(s => {
+    const p = s.pagamento || '—';
+    if (!payMap[p]) payMap[p] = { name: p, total: 0, count: 0 };
+    payMap[p].total += Number(s.importo) || 0;
+    payMap[p].count += 1;
+  });
+  const payList = Object.values(payMap).sort((a,b) => b.total - a.total).slice(0, 4);
+
+  // Render
+  document.getElementById('cm_avatar').textContent = ((nome[0]||'?') + (cognome[0]||'')).toUpperCase();
+  document.getElementById('cm_name').textContent = `${nome} ${cognome}`.trim() || '—';
+  const contactBits = [];
+  if (cellulare) contactBits.push(`<a href="tel:${escapeHTML(cellulare)}">${escapeHTML(cellulare)}</a>`);
+  if (email) contactBits.push(`<a href="mailto:${escapeHTML(email)}">${escapeHTML(email)}</a>`);
+  document.getElementById('cm_contacts').innerHTML = contactBits.length ? contactBits.join(' · ') : '<span style="opacity:0.6;">Nessun contatto registrato</span>';
+
+  document.getElementById('cm_ltv').textContent = fmtEUR(total);
+  document.getElementById('cm_count').textContent = fmtNum(count);
+  document.getElementById('cm_avg').textContent = fmtEUR(avg);
+
+  // Status abbonamento: prendi la vendita con data_fine più alta
+  const withSub = history.filter(s => s.data_fine_abbonamento);
+  const lastCell = document.getElementById('cm_last');
+  if (withSub.length > 0) {
+    const latestSub = withSub.reduce((a,b) => a.data_fine_abbonamento > b.data_fine_abbonamento ? a : b);
+    const today = new Date().toISOString().slice(0,10);
+    const days = daysBetween(today, latestSub.data_fine_abbonamento);
+    lastCell.parentElement.querySelector('.lbl').textContent = 'Abbon. scade tra';
+    if (days < 0) {
+      lastCell.innerHTML = `<span style="color:var(--red);">${Math.abs(days)}gg fa</span>`;
+    } else if (days === 0) {
+      lastCell.innerHTML = `<span style="color:var(--red);">OGGI</span>`;
+    } else if (days <= 30) {
+      lastCell.innerHTML = `<span style="color:var(--yellow);">${days}gg</span>`;
+    } else {
+      lastCell.innerHTML = `${days}gg`;
+    }
+  } else {
+    lastCell.parentElement.querySelector('.lbl').textContent = 'Ultimo acquisto';
+    lastCell.textContent = fmtDate(lastDate);
+  }
+
+  // Origine bars
+  const maxOrigTot = Math.max(advTot, liaTot, 1);
+  document.getElementById('cm_origin').innerHTML = `
+    <div class="bar-row">
+      <span class="bar-label">ADV</span>
+      <span class="bar-bg"><span class="bar-fill" style="width:${(advTot/maxOrigTot*100).toFixed(0)}%"></span></span>
+      <span class="bar-value">${fmtEUR(advTot)}<span style="font-family:var(--font-body);font-size:10px;color:var(--muted);margin-left:6px;font-weight:600;">${advN}×</span></span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">LIA</span>
+      <span class="bar-bg"><span class="bar-fill" style="width:${(liaTot/maxOrigTot*100).toFixed(0)}%"></span></span>
+      <span class="bar-value">${fmtEUR(liaTot)}<span style="font-family:var(--font-body);font-size:10px;color:var(--muted);margin-left:6px;font-weight:600;">${liaN}×</span></span>
+    </div>
+  `;
+
+  // Pagamenti bars
+  if (payList.length === 0) {
+    document.getElementById('cm_payments').innerHTML = '<div style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;">Nessun pagamento registrato</div>';
+  } else {
+    const maxPayTot = Math.max(...payList.map(p => p.total), 1);
+    document.getElementById('cm_payments').innerHTML = payList.map(p => `
+      <div class="bar-row">
+        <span class="bar-label">${escapeHTML(p.name)}</span>
+        <span class="bar-bg"><span class="bar-fill" style="width:${(p.total/maxPayTot*100).toFixed(0)}%"></span></span>
+        <span class="bar-value">${fmtEUR(p.total)}<span style="font-family:var(--font-body);font-size:10px;color:var(--muted);margin-left:6px;font-weight:600;">${p.count}×</span></span>
+      </div>
+    `).join('');
+  }
+
+  // Storico
+  document.getElementById('cm_history').innerHTML = history.map(s => {
+    const origCls = s.origine === 'ADV' ? 'pill-adv' : 'pill-lia';
+    const subInfo = s.data_fine_abbonamento
+      ? `<div style="font-size:10.5px;color:var(--muted);font-weight:600;margin-top:3px;text-transform:uppercase;letter-spacing:0.06em;">⇢ scade ${fmtDate(s.data_fine_abbonamento)}</div>`
+      : '';
+    return `
+      <tr>
+        <td style="white-space:nowrap;text-transform:uppercase;font-size:11px;font-weight:600;letter-spacing:0.04em;">${fmtDate(s.data)}</td>
+        <td><span class="pill ${origCls}">${escapeHTML(s.origine || '—')}</span></td>
+        <td>${escapeHTML(s.tipologia)}${s.note ? `<div style="font-size:10.5px;color:var(--muted);font-weight:400;margin-top:2px;">${escapeHTML(s.note)}</div>` : ''}${subInfo}</td>
+        <td style="font-family:var(--font-display);font-size:16px;letter-spacing:-0.01em;white-space:nowrap;">${fmtEUR(s.importo)}</td>
+        <td>${s.pagamento ? `<span class="pill pill-pagamento">${escapeHTML(s.pagamento)}</span>` : '—'}</td>
+      </tr>
+    `;
+  }).join('');
+
+  document.getElementById('customerModal').classList.add('show');
+}
+
+function closeCustomerModal() {
+  document.getElementById('customerModal').classList.remove('show');
+}
+
+function onBackdropClick(e) {
+  if (e.target.id === 'customerModal') closeCustomerModal();
+}
+
+// ESC chiude modal o ricerca · Cmd/Ctrl+K focus rapido sulla ricerca
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    if (document.getElementById('customerModal').classList.contains('show')) {
+      closeCustomerModal();
+      return;
+    }
+    const searchInp = document.getElementById('customerSearch');
+    if (searchInp && searchInp.value) {
+      clearCustomerSearch();
+      searchInp.blur();
+    }
+  }
+  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+    e.preventDefault();
+    const searchInp = document.getElementById('customerSearch');
+    if (searchInp) { searchInp.focus(); searchInp.select(); }
+  }
+});
+
 /* ===== INIT ===== */
 async function initApp() {
   showLoader();
@@ -1789,6 +2804,19 @@ async function initApp() {
   document.getElementById('userAvatar').textContent = (currentUser.email || '?').charAt(0).toUpperCase();
   document.getElementById('f_data').value = new Date().toISOString().slice(0,10);
   document.getElementById('f_email').addEventListener('blur', checkExistingCustomer);
+
+  // Auto-suggerimento Fine abbonamento basato sulla tipologia
+  document.getElementById('f_tipologia').addEventListener('input', updateSuggestedFine);
+  document.getElementById('f_tipologia').addEventListener('change', updateSuggestedFine);
+  document.getElementById('f_data').addEventListener('change', updateSuggestedFine);
+  document.getElementById('f_inizio').addEventListener('input', () => {
+    document.getElementById('f_inizio').dataset.autoFilled = '';
+    updateSuggestedFine();
+  });
+  document.getElementById('f_fine').addEventListener('input', () => {
+    document.getElementById('f_fine').dataset.autoFilled = '';
+    document.getElementById('suggestedTag').textContent = 'manuale';
+  });
 
   document.querySelectorAll('.origine-option').forEach(el => {
     el.addEventListener('click', () => selectOrigine(el.dataset.origine));
